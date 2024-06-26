@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Azure;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,7 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         options.Authority = "https://login.microsoftonline.com/73c3f2b2-f989-45c5-8f38-0cac41cec8bf";
-        options.Audience = "api://495cdedf-d7f3-4aea-be6f-c2408385e426";  // 这通常是 Azure AD 为你的 API 注册的应用程序 ID URI
+        options.Audience = "api://495cdedf-d7f3-4aea-be6f-c2408385e426";
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,  // 确认颁发者是你的 Azure AD 租户
